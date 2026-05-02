@@ -2,7 +2,7 @@
 title: "AI-DLCのルールファイルを全部読んでみた——awslabs/aidlc-workflowsの仕組みを深掘りする"
 emoji: "🗂️"
 type: "tech"
-topics: ["AIDLC", "AmazonQ", "AIコーディング", "AWS", "ソフトウェア開発"]
+topics: ["AIエージェント", "AIコーディング", "ソフトウェア開発", "claudecode", "プロンプトエンジニアリング"]
 published: true
 ---
 
