@@ -1,52 +1,16 @@
-# Agent Guidelines for Zenn Documentation Repository
+# AGENTS.md
 
-## Repository Purpose
-This repository manages Zenn articles and books. It contains markdown files following Zenn's frontmatter format.
+## リポジトリ概要
 
-## Working with Articles
+Zenn の記事 (`articles/`) と本 (`books/`) を管理するドキュメントリポジトリ。  
+ビルド・テスト・リンター等の設定は一切なく、単なる Markdown ファイルの集まり。
 
-### Article Structure
-- Articles are stored in the `articles/` directory
-- Each article is a markdown file with YAML frontmatter
-- Required frontmatter fields: `title`, `emoji`, `type`, `topics`, `published`
+## 記事作成
 
-### Creating New Articles
-1. Create a new markdown file in `articles/` with a descriptive filename (use kebab-case)
-2. Include the required frontmatter:
-   ```yaml
-   ---
-   title: "Article Title"
-   emoji: "📝"
-   type: "tech" # or "idea"
-   topics: ["topic1", "topic2"]
-   published: true
-   ---
-   ```
-3. Write article content below the frontmatter
+- `articles/` に kebab-case の .md ファイルを作成
+- YAML frontmatter 必須: `title`, `emoji`, `type` (tech/idea), `topics`, `published`
 
-### Books
-- Book manuscripts are stored in the `books/` directory
-- Currently contains only a `.gitkeep` placeholder
+## 禁止事項
 
-## Git Workflow
-- Standard git add/commit/push workflow applies
-- No special build/test processes required
-- Preview articles locally using Zenn CLI if available:
-  ```bash
-  # Install Zenn CLI (if needed)
-  npm init -y
-  npm install zenn-cli
-  
-  # Preview
-  npx zenn preview
-  ```
-
-## File Naming Conventions
-- Use kebab-case for article filenames (e.g., `my-article-title.md`)
-- Keep filenames descriptive but concise
-- Use .md extension for all markdown files
-
-## Validation
-- Ensure frontmatter is valid YAML
-- Check that all required fields are present
-- Verify topics match existing tags when possible
+- **コミットはユーザーの明示的な指示なしに行わない**
+- **`git push` も同様にユーザーの指示が必要**
