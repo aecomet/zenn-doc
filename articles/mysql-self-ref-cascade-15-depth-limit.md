@@ -3,7 +3,7 @@ title: "MySQLの ON DELETE CASCADE には“15階層の壁”がある"
 emoji: "🌲"
 type: "tech"
 topics: ["mysql", "innodb", "sql", "foreignkey", "tree"]
-published: false
+published: true
 ---
 
 ツリー構造（自己参照テーブル）を「親を消したら子孫も全部消える」ようにしたくて `ON DELETE CASCADE` を張ろうとしたら、想像以上に引っかかる点が多かったのでまとめました。
