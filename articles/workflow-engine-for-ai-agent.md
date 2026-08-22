@@ -6,7 +6,7 @@ topics: ["ai-agent", "workflow", "idempotency", "typescript", "temporal"]
 published: false
 ---
 
-2026年に入り、AIエージェントの実装フレームワークは激変しています。OpenAIのSwarm、AnthropicのClaude Code、GoogleのADKなど、エージェントを組みやすくするライブラリが次々に登場し、「AIに何を判断させるか」は以前よりずっと簡単になりました。
+2026年に入り、AIエージェントの実装フレームワークは激変しています。OpenAIのAgents SDK、AnthropicのClaude Code、GoogleのADKなど、エージェントを組みやすくするライブラリが次々に登場し、「AIに何を判断させるか」は以前よりずっと簡単になりました。
 
 一方で、AIが判断した結果を「本番で安全に動かす」という問題は、フレームワークでは解決されません。承認待ち、再起動、再試行、二重実行防止——これらはAIの推論そのものではありませんが、実運用には必須です。
 
@@ -16,7 +16,7 @@ published: false
 
 今回のコードは仕組みを比較するための最小例です。本番運用に必要な認証、永続化、監視、詳細なエラー処理などは省略しています。
 
-動かし方はシンプルです。Temporalは`npx @temporalio/cli`でローカルサーバーを起動し、WorkflowとWorkerを登録して実行します。AWS Lambda Durable Functionsは`@aws/durable-execution-sdk-js`をインストールし、AWS環境にデプロイします。
+動かし方はシンプルです。Temporalは`npx @temporalio/cli server start-dev`でローカル開発サーバーを起動し、Workerを登録して実行します。AWS Lambda Durable Functionsは`@aws/durable-execution-sdk-js`をインストールし、AWS環境にデプロイします。
 
 題材は単純です。
 
@@ -276,8 +276,17 @@ export async function restockWorkflow(taskId: string) {
   });
 
   // 承認が届くまでWorkflowを待つ。
+  // 自前実装の APPROVAL_TTL_MS と同じ60秒で期限を切る。
   // 待機中にWorkerプロセスが落ちても、Temporalが状態を保持して再開する。
-  await condition(() => approvedHash !== null);
+  const approved = await condition(
+    () => approvedHash !== null,
+    "60 seconds",
+  );
+
+  // 期限までに承認が届かなかったら、このWorkflowは失敗として終わる。
+  if (!approved) {
+    throw new Error("approval deadline exceeded");
+  }
 
   // ユーザーが承認した計画と、現在の計画が同じかを確認する。
   if (approvedHash !== planHash) {
