@@ -1,0 +1,25 @@
+{
+  "name": "zenn-doc",
+  "version": "1.0.0",
+  "description": "[Zenn Profile](https://zenn.dev/aecomet)",
+  "scripts": {
+    "lint": "textlint articles/ books/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aecomet/zenn-doc.git"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aecomet/zenn-doc/issues"
+  },
+  "homepage": "https://github.com/aecomet/zenn-doc#readme",
+  "devDependencies": {
+    "textlint": "^15.8.0",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-rule-max-ten": "^5.0.0",
+    "textlint-rule-preset-ja-spacing": "^3.0.3",
+    "textlint-rule-preset-ja-technical-writing": "^12.0.2"
+  }
+}
