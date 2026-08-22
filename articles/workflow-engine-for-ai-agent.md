@@ -3,7 +3,7 @@ title: "AIエージェントの実行基盤を比較——自前実装 vs Tempor
 emoji: "⚙️"
 type: "tech"
 topics: ["ai-agent", "workflow", "idempotency", "typescript", "temporal"]
-published: false
+published: true
 ---
 
 2026年に入り、AIエージェントの実装フレームワークは激変しています。OpenAIのAgents SDK、AnthropicのClaude Code、GoogleのADKなど、エージェントを組みやすくするライブラリが次々に登場し、「AIに何を判断させるか」は以前よりずっと簡単になりました。
